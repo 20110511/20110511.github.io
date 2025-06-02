@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>端午安康</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #FF8C00, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        .poem {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 2;
+        }
+
+        .poem p {
+            margin-bottom: 15px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .poem p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .poem p::before {
+            content: "「";
+            font-size: 2rem;
+            color: #FFA500;
+            margin-right: 10px;
+        }
+
+        .poem p::after {
+            content: "」";
+            font-size: 2rem;
+            color: #FFA500;
+            margin-left: 10px;
+        }
+
+        .signature {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            .poem {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .poem {
+                font-size: 0.9rem;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">端午安康</h1>
+        
+        <div class="poem">
+            <p>五月榴花妖艳烘，绿杨带雨垂垂重。</p>
+            <p>五色新丝缠角粽，金盘送，生绡画扇盘双凤。</p>
+            <p>正是浴兰时节动，菖蒲酒美清尊共。</p>
+            <p>叶里黄鹂时一弄，犹瞢松，等闲惊破纱窗梦。</p>
+            <!-- 这首词是欧阳修的《渔家傲·五月榴花妖艳烘》，描写了端午节的景象 -->
+        </div>
+        
+        <div class="signature">Create by 占俊凡</div>
+    </div>
+
+    <script>
+        // 诗句逐个显示的动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const poemLines = document.querySelectorAll('.poem p');
+            
+            function showNextLine(index) {
+                if (index < poemLines.length) {
+                    setTimeout(() => {
+                        poemLines[index].classList.add('visible');
+                        showNextLine(index + 1);
+                    }, 800); // 每行间隔800毫秒
+                }
+            }
+            
+            // 开始动画
+            showNextLine(0);
+        });
+    </script>
+</body>
+</html>
